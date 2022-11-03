@@ -1,0 +1,5 @@
+Src/tmp/*
+/schemaspy/output*
+/src/public/tmp/*
+!.gitkeep
+.DS_Store
