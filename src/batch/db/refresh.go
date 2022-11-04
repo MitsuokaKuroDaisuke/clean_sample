@@ -20,9 +20,9 @@ func main() {
 	db.AutoMigrate(&domain.User{})
 
 	users := []domain.User{
-		{Email: "d.mitsuoka@newbees.jp", Name: "mitsu"},
-		{Email: "t.tt@newbees.jp", Name: "nog"},
-		{Email: "y.ooo@newbees.jp", Name: "peco"},
+		{Email: "d.mmm@example.jp", Name: "mitsu"},
+		{Email: "t.tt@example.jp", Name: "test2"},
+		{Email: "y.ooo@example.jp", Name: "test3"},
 	}
 
 	db.Create(&users)
