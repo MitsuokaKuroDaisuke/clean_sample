@@ -2,6 +2,7 @@ package controller
 
 import (
 	"net/http"
+	"www/domain"
 	"www/interfaces/presenters"
 	"www/usecase"
 
@@ -33,4 +34,9 @@ func (controller *UserController) GetUser(c echo.Context) error {
 
 func (controller *UserController) ShowCreateUser(c echo.Context) error {
 	return c.Render(http.StatusOK, "user_create", "")
+}
+
+func (controller *UserController) CreateUser(c echo.Context) error {
+	res := domain.User{}
+	return controller.Presenters.OutputCreateUserDone(c, res)
 }

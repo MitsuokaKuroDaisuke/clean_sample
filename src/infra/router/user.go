@@ -20,4 +20,7 @@ func setUserRoutes(e *echo.Echo) {
 	e.GET("/user/create", func(c echo.Context) error {
 		return userController.ShowCreateUser(c)
 	})
+	e.POST("/user/create", func(c echo.Context) error {
+		return userController.CreateUser(c)
+	})
 }

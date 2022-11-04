@@ -1,10 +1,11 @@
 package presenters
 
 import (
+	"fmt"
 	"net/http"
 	"time"
+	"www/common"
 	"www/domain"
-	"www/usecase"
 
 	"github.com/labstack/echo/v4"
 )
@@ -26,7 +27,7 @@ func (pr *UserOutputPort) OutputAllUser(c echo.Context, users []domain.User) err
 	res := []APIUser{}
 	for _, u := range users {
 		r := new(APIUser)
-		usecase.CopyStruct(u, r)
+		common.CopyStruct(u, r)
 		res = append(res, *r)
 	}
 
@@ -42,5 +43,18 @@ func (pr *UserOutputPort) OutputUser(c echo.Context, user domain.User) error {
 		Users: user,
 	}
 	return c.Render(http.StatusOK, "user_list", data)
+}
+
+func (pr *UserOutputPort) OutputCreateUserDone(c echo.Context, user domain.User) error {
+
+	if user.ID == 0 {
+		return fmt.Errorf("ユーザが作成されていません。")
+	}
+	data := struct {
+		User domain.User
+	}{
+		User: user,
+	}
+	return c.Render(http.StatusOK, "user_create_done", data)
 
 }
