@@ -1,6 +1,6 @@
 package database
 
-import "www/domain/entity"
+import "src/domain/entity"
 
 // UserRepository ユーザリポジトリの実装
 type UserRepository struct {

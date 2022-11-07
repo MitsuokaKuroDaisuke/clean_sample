@@ -1,10 +1,10 @@
 package infra
 
 import (
-	"www/infra/database"
-	"www/interfaces/controller"
-	"www/interfaces/presenters"
-	"www/usecase/interactor"
+	"src/infra/database"
+	"src/interfaces/controller"
+	"src/interfaces/presenters"
+	"src/usecase/interactor"
 )
 
 // NewUserController ユーザコントローラ取得

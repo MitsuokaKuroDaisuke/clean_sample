@@ -3,7 +3,7 @@ FROM golang:1.18
 RUN apt update
 
 ENV GO111MODULE on
-WORKDIR /var/www
+WORKDIR /var/www/src
 
 RUN go install github.com/go-delve/delve/cmd/dlv@latest && \
   go install golang.org/x/lint/golint@latest && \

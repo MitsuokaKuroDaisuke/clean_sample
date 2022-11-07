@@ -8,11 +8,7 @@ services:
     stdin_open: true
     command: /bin/bash
     volumes:
-      - ../src:/var/www
-      - ../go.mod:/var/www/go.mod
-      - ../go.sum:/var/www/go.sum
-      - ../.air.toml:/var/www/.air.toml
-      - ../.vscode:/var/www/.vscode
+      - ../:/var/www
     environment:
       - APP_ENV=local
       - GOOGLE_CLIENT_ID=565338347327-nsde16vlsab1jm3le95fi355nd62kpv2.apps.googleusercontent.com

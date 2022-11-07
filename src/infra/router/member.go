@@ -1,8 +1,8 @@
 package router
 
 import (
-	"www/infra"
-	"www/infra/database"
+	"src/infra"
+	"src/infra/database"
 
 	"github.com/labstack/echo/v4"
 )

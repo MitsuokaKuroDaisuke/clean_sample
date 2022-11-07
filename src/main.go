@@ -1,7 +1,7 @@
 package main
 
 import (
-	"www/infra/router"
+	"src/infra/router"
 )
 
 // ArticleJob 記事取得スケジューラ

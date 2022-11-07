@@ -2,7 +2,7 @@ package router
 
 import (
 	"net/http"
-	"www/infra"
+	"src/infra"
 
 	"github.com/labstack/echo/v4"
 )
@@ -25,7 +25,7 @@ func Init() *echo.Echo {
 }
 
 func setStatic(e *echo.Echo) {
-	e.Static("/public/css/", "/var/www/public/css")
-	e.Static("/public/js/", "/var/www/public/js/")
-	e.Static("/public/img/", "/var/www/public/img/")
+	e.Static("/public/css/", "/var/www/src/public/css")
+	e.Static("/public/js/", "/var/www/src/public/js/")
+	e.Static("/public/img/", "/var/www/src/public/img/")
 }

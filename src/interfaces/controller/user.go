@@ -2,8 +2,8 @@ package controller
 
 import (
 	"net/http"
-	"www/interfaces/presenters"
-	"www/usecase/interactor"
+	"src/interfaces/presenters"
+	"src/usecase/interactor"
 
 	"github.com/labstack/echo/v4"
 )

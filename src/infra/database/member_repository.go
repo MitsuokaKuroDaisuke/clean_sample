@@ -1,6 +1,6 @@
 package database
 
-import "www/domain/entity"
+import "src/domain/entity"
 
 // MemberRepository メンバーリポジトリの実装
 type MemberRepository struct {

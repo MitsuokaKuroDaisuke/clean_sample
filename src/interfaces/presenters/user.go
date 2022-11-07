@@ -2,9 +2,9 @@ package presenters
 
 import (
 	"net/http"
+	"src/domain/entity"
+	"src/usecase"
 	"time"
-	"www/domain/entity"
-	"www/usecase"
 
 	"github.com/labstack/echo/v4"
 )

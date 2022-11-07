@@ -4,7 +4,7 @@
     "./docker-compose.yml"
   ],
   "service": "app",
-  "workspaceFolder": "/var/www",
+  "workspaceFolder": "/var/www/src",
   "settings": {
     "go.toolsManagement.checkForUpdates": "off",
     "go.gopath": "/go",

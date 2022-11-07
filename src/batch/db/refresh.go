@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"www/domain/entity"
+	"src/domain/entity"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

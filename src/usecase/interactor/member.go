@@ -1,9 +1,9 @@
 package interactor
 
 import (
+	"src/domain"
+	"src/domain/entity"
 	"strconv"
-	"www/domain"
-	"www/domain/entity"
 )
 
 // User Userビジネスロジック

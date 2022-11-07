@@ -1,7 +1,7 @@
 package database
 
 import (
-	"www/domain"
+	"src/domain"
 )
 
 // MemberRepository メンバーリポジトリの実装

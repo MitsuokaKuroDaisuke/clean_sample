@@ -2,8 +2,8 @@ package presenters
 
 import (
 	"net/http"
-	"www/domain"
-	"www/domain/entity"
+	"src/domain"
+	"src/domain/entity"
 
 	"github.com/labstack/echo/v4"
 )
