@@ -17,11 +17,8 @@ func (interactor *UserInteractor) GetAllUser() []domain.User {
 }
 
 // GetInfo 取得
-func (interactor *UserInteractor) GetInfo(id string) domain.User {
+func (interactor *UserInteractor) GetInfo(id string) (domain.User, error) {
 	uid, err := strconv.Atoi(id)
-	if err != nil {
-		uid = 0
-	}
 	res := interactor.UserRepository.FindByID(uid)
-	return res
+	return res, err
 }

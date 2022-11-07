@@ -28,7 +28,10 @@ func (controller *UserController) GetUser(c echo.Context) error {
 
 	id := c.Param("id")
 
-	res := controller.Interactor.GetInfo(id)
+	res, err := controller.Interactor.GetInfo(id)
+	if err != nil {
+		return c.String(http.StatusOK, err.Error())
+	}
 	return controller.Presenters.OutputUser(c, res)
 }
 
