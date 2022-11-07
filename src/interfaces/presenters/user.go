@@ -3,7 +3,7 @@ package presenters
 import (
 	"net/http"
 	"time"
-	"www/domain"
+	"www/domain/entity"
 	"www/usecase"
 
 	"github.com/labstack/echo/v4"
@@ -21,7 +21,7 @@ type APIUser struct {
 }
 
 // OutputAllUser ユーザ全取得の表示
-func (pr *UserOutputPort) OutputAllUser(c echo.Context, users []domain.User) error {
+func (pr *UserOutputPort) OutputAllUser(c echo.Context, users []entity.User) error {
 
 	res := []APIUser{}
 	for _, u := range users {
@@ -34,10 +34,10 @@ func (pr *UserOutputPort) OutputAllUser(c echo.Context, users []domain.User) err
 }
 
 // OutputUser 指定したユーザの取得
-func (pr *UserOutputPort) OutputUser(c echo.Context, user domain.User) error {
+func (pr *UserOutputPort) OutputUser(c echo.Context, user entity.User) error {
 
 	data := struct {
-		Users domain.User
+		Users entity.User
 	}{
 		Users: user,
 	}

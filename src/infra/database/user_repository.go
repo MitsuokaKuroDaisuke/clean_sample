@@ -1,8 +1,6 @@
 package database
 
-import (
-	"www/domain"
-)
+import "www/domain/entity"
 
 // UserRepository ユーザリポジトリの実装
 type UserRepository struct {
@@ -10,15 +8,15 @@ type UserRepository struct {
 }
 
 // SelectAll 取得
-func (rep *UserRepository) SelectAll() []domain.User {
-	users := []domain.User{}
+func (rep *UserRepository) SelectAll() []entity.User {
+	users := []entity.User{}
 	rep.db.Order("id desc").Find(&users)
 	return users
 }
 
 // FindByID 取得
-func (rep *UserRepository) FindByID(id int) domain.User {
-	user := domain.User{}
+func (rep *UserRepository) FindByID(id int) entity.User {
+	user := entity.User{}
 	rep.db.Where("id = ?", id).First(&user)
 	return user
 }
