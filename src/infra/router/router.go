@@ -15,7 +15,6 @@ func Init() *echo.Echo {
 
 	setStatic(e)
 	setUserRoutes(e)
-	setMemberRoutes(e)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Redirect(http.StatusFound, "/users")
