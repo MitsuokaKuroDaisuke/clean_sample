@@ -4,21 +4,21 @@ import (
 	"www/infra/database"
 	"www/interfaces/controller"
 	"www/interfaces/presenters"
-	"www/usecase"
+	"www/usecase/interactor"
 )
 
 // NewUserController ユーザコントローラ取得
-func NewUserController(sqlHandler database.SQLHandler) *controller.UserController {
+func NewUserController(sqlHandler database.SQLHandler) *controller.User {
 
 	userRepository := &database.UserRepository{
 		SQLHandler: sqlHandler,
 	}
 
-	interactor := usecase.UserInteractor{
+	interactor := interactor.User{
 		UserRepository: userRepository,
 	}
 
-	return &controller.UserController{
+	return &controller.User{
 		Interactor: interactor,
 		Presenters: presenters.UserOutputPort{},
 	}
