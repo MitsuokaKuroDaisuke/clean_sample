@@ -1,6 +1,7 @@
 package presenters
 
 import (
+	"fmt"
 	"net/http"
 	"src/domain/entity"
 	"src/usecase"
@@ -42,5 +43,19 @@ func (pr *UserOutputPort) OutputUser(c echo.Context, user entity.User) error {
 		Users: user,
 	}
 	return c.Render(http.StatusOK, "user_list", data)
+
+}
+
+func (pr *UserOutputPort) OutputCreateUserDone(c echo.Context, user entity.User) error {
+
+	if user.ID == 0 {
+		return fmt.Errorf("ユーザが作成されていません。")
+	}
+	data := struct {
+		User entity.User
+	}{
+		User: user,
+	}
+	return c.Render(http.StatusOK, "user_create_done", data)
 
 }

@@ -2,6 +2,7 @@ package controller
 
 import (
 	"net/http"
+	"src/domain/entity"
 	"src/interfaces/presenters"
 	"src/usecase/interactor"
 
@@ -36,4 +37,10 @@ func (controller *User) GetUser(c echo.Context) error {
 
 func (controller *User) ShowCreateUser(c echo.Context) error {
 	return c.Render(http.StatusOK, "user_create", "")
+}
+
+// CreateUser ※このメソッドは未完成状態！！
+func (controller *User) CreateUser(c echo.Context) error {
+	res := entity.User{}
+	return controller.Presenters.OutputCreateUserDone(c, res)
 }
