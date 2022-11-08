@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"context"
 	"time"
 )
 
@@ -15,4 +16,5 @@ type MemberMatch struct {
 }
 
 type MemberMatchRepository interface {
+	Create(ctx context.Context)
 }

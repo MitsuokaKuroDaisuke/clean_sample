@@ -26,13 +26,20 @@ func NewUserController(sqlHandler database.SQLHandler) *controller.User {
 
 func NewMemberController(sqlHandler database.SQLHandler) *controller.Member {
 
-	memberRepository := &database.MemberRepository{
-		SQLHandler: sqlHandler,
-	}
-
 	interactor := interactor.Member{
-		MemberRepository: memberRepository,
+		MemberRepository: &database.MemberRepository{
+			SQLHandler: sqlHandler,
+		},
+		MemberDetailRepository: &database.MemberDetailRepository{
+			SQLHandler: sqlHandler,
+		},
+		MemberMatchRepository: &database.MemberMatchRepository{
+			SQLHandler: sqlHandler,
+		},
 		OriginalMemberRepository: &database.OriginalMemberRepository{
+			SQLHandler: sqlHandler,
+		},
+		Transaction: &database.Transaction{
 			SQLHandler: sqlHandler,
 		},
 	}

@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"context"
 	"time"
 )
 
@@ -14,4 +15,5 @@ type MemberDetail struct {
 }
 
 type MemberDetailRepository interface {
+	Create(ctx context.Context)
 }
