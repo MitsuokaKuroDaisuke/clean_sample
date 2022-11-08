@@ -9,6 +9,7 @@ services:
     command: /bin/bash
     volumes:
       - ../:/var/www
+      - ../.vscode:/var/www/src/.vscode
     environment:
       - APP_ENV=local
       - GOOGLE_CLIENT_ID=565338347327-nsde16vlsab1jm3le95fi355nd62kpv2.apps.googleusercontent.com
