@@ -49,7 +49,7 @@ func (pr *UserOutputPort) OutputUser(c echo.Context, user entity.User) error {
 func (pr *UserOutputPort) OutputCreateUserDone(c echo.Context, user entity.User) error {
 
 	if user.ID == 0 {
-		return fmt.Errorf("ユーザが作成されていません。")
+		return fmt.Errorf("ユーザが作成されていません")
 	}
 	data := struct {
 		User entity.User

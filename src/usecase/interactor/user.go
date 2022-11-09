@@ -22,3 +22,10 @@ func (interactor *User) GetInfo(id string) (entity.User, error) {
 	res := interactor.UserRepository.FindByID(uid)
 	return res, err
 }
+
+// Create ※このメソッドは未完成状態！！
+// 現状はあくまでもコンパイルを通すためだけの処理が記載
+func (interactor *User) Create(user entity.User) entity.User {
+	res := entity.User{}
+	return res
+}

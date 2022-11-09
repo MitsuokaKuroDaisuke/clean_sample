@@ -28,7 +28,7 @@ func TestUser_Create(t *testing.T) {
 		want   entity.User
 	}{
 		{
-			name:   "通常テスト",
+			name:   "通常登録テスト",
 			fields: f,
 			args:   args{u: entity.User{Name: "UsecaseCreateUser", Email: "u-test@example.com"}},
 			want:   entity.User{Name: "UsecaseCreateUser", Email: "u-test@example.com"},
@@ -45,8 +45,14 @@ func TestUser_Create(t *testing.T) {
 			interactor := &interactor.User{
 				UserRepository: tt.fields.UserRepository,
 			}
-			if got := interactor.Create(tt.args.u); got.Name != tt.want.Name {
-				t.Errorf("User.Create() = %v, want %v", got, tt.want)
+			got := interactor.Create(tt.args.u)
+			if got.ID == 0 {
+				t.Errorf("ユーザが作成されていません")
+				return
+			}
+			if got.Name != tt.want.Name {
+				t.Errorf("期待されるname=%v, 実際の名前=%v", tt.want.Name, got.Name)
+				return
 			}
 		})
 	}

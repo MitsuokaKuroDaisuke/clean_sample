@@ -40,6 +40,7 @@ func (controller *User) ShowCreateUser(c echo.Context) error {
 }
 
 // CreateUser ※このメソッドは未完成状態！！
+// 現状はあくまでもコンパイルを通すためだけの処理が記載
 func (controller *User) CreateUser(c echo.Context) error {
 	res := entity.User{}
 	return controller.Presenters.OutputCreateUserDone(c, res)
