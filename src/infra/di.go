@@ -1,3 +1,6 @@
+/*
+	ここで、依存性注入を行いControllerを作成する。
+*/
 package infra
 
 import (

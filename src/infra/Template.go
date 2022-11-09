@@ -1,3 +1,6 @@
+/*
+	テンプレートエンジン（html/template）の初期化を行います。
+*/
 package infra
 
 import (

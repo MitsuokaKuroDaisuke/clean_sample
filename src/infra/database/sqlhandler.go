@@ -1,3 +1,7 @@
+/*
+	package database
+	レイヤーはinfra層で、データの永続化を行う。
+*/
 package database
 
 import (

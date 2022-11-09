@@ -1,3 +1,7 @@
+/*
+	package interactor
+	ビジネスロジック。domain層意外に依存してはならない。
+*/
 package interactor
 
 import (
