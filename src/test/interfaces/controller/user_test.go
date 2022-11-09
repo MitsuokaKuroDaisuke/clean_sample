@@ -3,6 +3,7 @@ package controller
 import (
 	"net/url"
 	"src/infra/database"
+	"src/interfaces/controller"
 	"src/interfaces/presenters"
 	"src/usecase/interactor"
 	"testing"
@@ -44,7 +45,7 @@ func TestUserController_CreateUser(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "test1",
+			name:    "登録完了して完了画面まで表示できるかのテスト",
 			fields:  f,
 			args:    a,
 			wantErr: false,
@@ -52,7 +53,7 @@ func TestUserController_CreateUser(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			controller := &User{
+			controller := &controller.User{
 				Interactor: tt.fields.Interactor,
 				Presenters: tt.fields.Presenters,
 			}
