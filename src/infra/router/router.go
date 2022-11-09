@@ -1,3 +1,7 @@
+/*
+	package router
+	ユーザからのリクエストに対するハンドラの登録を行う。
+*/
 package router
 
 import (

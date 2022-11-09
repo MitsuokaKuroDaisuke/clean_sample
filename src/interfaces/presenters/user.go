@@ -1,3 +1,8 @@
+/*
+	package presenters
+	レイヤーはInterface Adapters層。
+	controllerから受け取った値をユーザに返却する形に変換する。
+*/
 package presenters
 
 import (

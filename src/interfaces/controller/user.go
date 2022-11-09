@@ -1,3 +1,9 @@
+/*
+	package controller
+	レイヤーはInterface Adapters層。
+	受け取ったリクエストを取り出し、それぞれのレイヤーで利用できる形に変換した上でusecaseの処理を呼び出す。
+	その後usecase層からの戻り値をpresentersに渡す。
+*/
 package controller
 
 import (

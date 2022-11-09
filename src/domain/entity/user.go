@@ -1,3 +1,9 @@
+/*
+	package entity
+	レイヤーはdomain層で、DBのテーブルとORMで紐づくモデルを定義。
+	Repositoryによるデータ永続化処理のインターフェースの他、モデルに対するドメインロジックを記載。
+	他のレイヤーに依存する処理を行うのは禁止。
+*/
 package entity
 
 import (
