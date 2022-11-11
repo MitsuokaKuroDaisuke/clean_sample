@@ -5,6 +5,7 @@ package infra
 
 import (
 	"src/infra/database"
+	"src/infra/redis"
 	"src/interfaces/controller"
 	"src/interfaces/presenters"
 	"src/usecase/interactor"
@@ -22,7 +23,8 @@ func NewUserController(sqlHandler database.SQLHandler) *controller.User {
 	}
 
 	return &controller.User{
-		Interactor: interactor,
-		Presenters: presenters.UserOutputPort{},
+		Interactor:   interactor,
+		Presenters:   presenters.UserOutputPort{},
+		LoginSession: redis.LoginSession{Sess: redis.NewSessionHandler()},
 	}
 }

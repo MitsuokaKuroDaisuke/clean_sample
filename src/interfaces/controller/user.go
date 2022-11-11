@@ -9,8 +9,8 @@ package controller
 import (
 	"net/http"
 	"src/domain/entity"
-	"src/interfaces"
 	"src/interfaces/presenters"
+	"src/interfaces/session"
 	"src/usecase/interactor"
 
 	"github.com/labstack/echo/v4"
@@ -18,8 +18,9 @@ import (
 
 // User ユーザコントローラ
 type User struct {
-	Interactor interactor.User
-	Presenters presenters.UserOutputPort
+	Interactor   interactor.User
+	Presenters   presenters.UserOutputPort
+	LoginSession session.Login
 }
 
 // GetAllUser 取得
@@ -57,14 +58,12 @@ func (controller *User) LoginUser(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusOK, err.Error())
 	}
-	rs := interfaces.LoginSession{}
-	rs.NewSession(c)
+	controller.LoginSession.NewSession(c)
 	return c.Redirect(http.StatusFound, "/user/home")
 }
 
 func (controller *User) ShowHome(c echo.Context) error {
-	rs := interfaces.LoginSession{}
-	auth, name := rs.GetSession(c)
+	auth, name := controller.LoginSession.GetSession(c)
 	if !auth {
 		return c.Redirect(http.StatusFound, "/user/login")
 	}
@@ -79,7 +78,6 @@ func (controller *User) ShowHome(c echo.Context) error {
 }
 
 func (controller *User) LogoutUser(c echo.Context) error {
-	rs := interfaces.LoginSession{}
-	rs.DeleteSession(c)
+	controller.LoginSession.DeleteSession(c)
 	return c.Render(http.StatusOK, "home", "")
 }

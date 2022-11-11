@@ -1,32 +1,23 @@
-package interfaces
+package redis
 
 import (
 	"context"
-	"crypto/rand"
 	"fmt"
-	"io"
-	"log"
 	"net/http"
 
-	"github.com/go-redis/redis/v8"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo/v4"
 	"github.com/rbcervilla/redisstore/v8"
 )
 
 type LoginSession struct {
+	Sess SessionHandler
 }
 
-func (ls LoginSession) getSession(c echo.Context) *sessions.Session {
-	client := redis.NewClient(&redis.Options{
-		Addr:     "redis:6379",
-		Password: "",
-		DB:       0,
-	})
-	store, err := redisstore.NewRedisStore(context.Background(), client)
+func (ls LoginSession) getSession(c echo.Context) (*sessions.Session, error) {
+	store, err := redisstore.NewRedisStore(context.Background(), ls.Sess.client)
 	if err != nil {
-		log.Fatal("Failed cannot connect redis", err)
-		//return err
+		return nil, err
 	}
 	store.KeyPrefix("session_")
 	store.Options(sessions.Options{
@@ -35,28 +26,23 @@ func (ls LoginSession) getSession(c echo.Context) *sessions.Session {
 	})
 	session, err := store.Get(c.Request(), "my-investment")
 	if err != nil {
-		log.Fatal("Failed cannot get session", err)
+		return nil, err
 	}
-	return session
+	return session, nil
 }
 
 func (ls LoginSession) NewSession(c echo.Context) error {
-	b := make([]byte, 64)
-	if _, err := io.ReadFull(rand.Reader, b); err != nil {
-		panic("ランダムな文字作成時にエラーが発生しました。")
-	}
-
-	session := ls.getSession(c)
+	session, err := ls.getSession(c)
 	session.Values["username"] = "u.Name"                            //ログインユーザ名を付与
 	session.Values["auth"] = true                                    // ログイン有無の確認用
 	if err := sessions.Save(c.Request(), c.Response()); err != nil { // Session情報の保存
 		return fmt.Errorf("エラー")
 	}
-	return nil
+	return err
 }
 
 func (ls LoginSession) GetSession(c echo.Context) (bool, string) {
-	session := ls.getSession(c)
+	session, _ := ls.getSession(c)
 	if session.Values["auth"] == true {
 		return true, session.Values["username"].(string)
 	} else {
@@ -65,7 +51,7 @@ func (ls LoginSession) GetSession(c echo.Context) (bool, string) {
 }
 
 func (ls LoginSession) DeleteSession(c echo.Context) error {
-	session := ls.getSession(c)
+	session, _ := ls.getSession(c)
 	// ログアクト
 	session.Values["auth"] = false
 	// セッション削除
