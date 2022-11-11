@@ -26,4 +26,17 @@ func setUserRoutes(e *echo.Echo) {
 	e.GET("/user/create", func(c echo.Context) error {
 		return userController.ShowCreateUser(c)
 	})
+	e.GET("/user/login", func(c echo.Context) error {
+		return userController.ShowLoginUser(c)
+	})
+	e.POST("/user/login", func(c echo.Context) error {
+		return userController.LoginUser(c)
+	})
+	e.GET("/user/home", func(c echo.Context) error {
+		return userController.ShowHome(c)
+	})
+	e.POST("/user/logout", func(c echo.Context) error {
+		return userController.LogoutUser(c)
+	})
+
 }

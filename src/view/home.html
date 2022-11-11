@@ -1,0 +1,9 @@
+{{define "home"}}
+    <body>
+        <h3>ログイン後</h3>
+        <div>{{.Name}}</div>
+        <form action="/user/logout" name="logout" method="post">
+            <input type="submit" value="ログアウト" />
+        </form>        
+    </body>
+{{end}}

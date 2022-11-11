@@ -5,6 +5,7 @@ import (
 	"os"
 	"src/domain/entity"
 
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -21,10 +22,16 @@ func main() {
 	db.AutoMigrate(&entity.User{})
 
 	users := []entity.User{
-		{Email: "d.mmm@example.jp", Name: "mitsu"},
-		{Email: "t.tt@example.jp", Name: "test2"},
-		{Email: "y.ooo@example.jp", Name: "test3"},
+		{Email: "d@example.jp", Name: "mitsu", Password: passwordEncrypt("password")},
+		{Email: "t.tt@example.jp", Name: "test2", Password: passwordEncrypt("password02")},
+		{Email: "y.ooo@example.jp", Name: "test3", Password: passwordEncrypt("pass")},
 	}
 
 	db.Create(&users)
+}
+
+// PasswordEncrypt 暗号(Hash)化
+func passwordEncrypt(password string) string {
+	hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	return string(hash)
 }

@@ -8,6 +8,8 @@ package controller
 
 import (
 	"net/http"
+	"src/domain/entity"
+	"src/interfaces"
 	"src/interfaces/presenters"
 	"src/usecase/interactor"
 
@@ -42,4 +44,42 @@ func (controller *User) GetUser(c echo.Context) error {
 
 func (controller *User) ShowCreateUser(c echo.Context) error {
 	return c.Render(http.StatusOK, "user_create", "")
+}
+
+func (controller *User) ShowLoginUser(c echo.Context) error {
+	return c.Render(http.StatusOK, "login", "")
+}
+
+func (controller *User) LoginUser(c echo.Context) error {
+	prm := entity.User{}
+	c.Bind(&prm)
+	err := controller.Interactor.Login(prm)
+	if err != nil {
+		return c.String(http.StatusOK, err.Error())
+	}
+	rs := interfaces.LoginSession{}
+	rs.NewSession(c)
+	return c.Redirect(http.StatusFound, "/user/home")
+}
+
+func (controller *User) ShowHome(c echo.Context) error {
+	rs := interfaces.LoginSession{}
+	auth, name := rs.GetSession(c)
+	if !auth {
+		return c.Redirect(http.StatusFound, "/user/login")
+	}
+
+	data := struct {
+		Name string
+	}{
+		Name: name,
+	}
+
+	return c.Render(http.StatusOK, "home", data)
+}
+
+func (controller *User) LogoutUser(c echo.Context) error {
+	rs := interfaces.LoginSession{}
+	rs.DeleteSession(c)
+	return c.Render(http.StatusOK, "home", "")
 }
