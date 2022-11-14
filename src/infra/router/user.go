@@ -7,15 +7,15 @@
 package router
 
 import (
-	"src/infra"
 	"src/infra/database"
+	"src/infra/di"
 
 	"github.com/labstack/echo/v4"
 )
 
 func setUserRoutes(e *echo.Echo) {
 
-	userController := infra.NewUserController(database.NewSQLHandler())
+	userController := di.NewUserController(database.NewSQLHandler())
 
 	e.GET("/users", func(c echo.Context) error {
 		return userController.GetAllUser(c)

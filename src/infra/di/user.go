@@ -1,12 +1,12 @@
 /*
 	ここで、依存性注入を行いControllerを作成する。
 */
-package infra
+package di
 
 import (
 	"src/infra/database"
-	"src/interfaces/controller"
-	"src/interfaces/presenters"
+	"src/interface/controller"
+	"src/interface/presenter"
 	"src/usecase/interactor"
 )
 
@@ -23,6 +23,6 @@ func NewUserController(sqlHandler database.SQLHandler) *controller.User {
 
 	return &controller.User{
 		Interactor: interactor,
-		Presenters: presenters.UserOutputPort{},
+		Presenter:  presenter.UserOutputPort{},
 	}
 }

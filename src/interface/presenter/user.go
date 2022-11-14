@@ -1,9 +1,9 @@
 /*
-	package presenters
+	package presenter
 	レイヤーはInterface Adapters層。
 	controllerから受け取った値をユーザに返却する形に変換する。
 */
-package presenters
+package presenter
 
 import (
 	"net/http"
