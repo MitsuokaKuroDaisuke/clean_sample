@@ -17,20 +17,18 @@ import (
 type UserOutputPort struct {
 }
 
-// APIUser API返却用ユーザ
-type APIUser struct {
-	ID        int       `json:"id"`
-	Email     string    `json:"e_mail"`
-	Name      string    `json:"user_name"`
-	CreatedAt time.Time `json:"created_at"`
-}
-
 // OutputAllUser ユーザ全取得の表示
 func (pr *UserOutputPort) OutputAllUser(c echo.Context, users []entity.User) error {
 
-	res := []APIUser{}
+	type response struct {
+		ID        int       `json:"id"`
+		Email     string    `json:"e_mail"`
+		Name      string    `json:"user_name"`
+		CreatedAt time.Time `json:"created_at"`
+	}
+	res := []response{}
 	for _, u := range users {
-		r := new(APIUser)
+		r := new(response)
 		usecase.CopyStruct(u, r)
 		res = append(res, *r)
 	}
