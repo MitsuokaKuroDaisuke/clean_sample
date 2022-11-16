@@ -23,7 +23,6 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 // InitTmp テンプレートエンジンの初期化
 func InitTmp() *Template {
 	d := "/var/www/src/view/*.html"
-
 	t := &Template{
 		templates: template.Must(template.New(d).ParseGlob(d)),
 	}
