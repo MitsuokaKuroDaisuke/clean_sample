@@ -10,7 +10,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// Template テンプレートエンジン用
+// Template テンプレートエンジン用あ
 type Template struct {
 	templates *template.Template
 }
